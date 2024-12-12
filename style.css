@@ -268,7 +268,11 @@ header .menu li a:hover {
 .thumbnail .item .content {
     position: absolute;
     inset: auto 10px 10px 10px;
-}
+    text-shadow: 1px 1px black,
+    -1px 1px 0 black,
+    1px -1px 0 rgb(0, 0, 0),
+    -1px -1px 0 black;
+}   
 
 @keyframes glowing {
     0% {
