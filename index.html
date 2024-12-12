@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+        body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            background-color: #010101;
+            color: #eee;
+        }
+
+        svg {
+            width: 25px;
+        }
+
+        header {
+            width: 1200px;
+            max-width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 50px 1fr 50px;
+            grid-template-rows: 50px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        header .logo {
+            font-weight: bold;
+        }
+
+        header .menu {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-weight: 500;
+        }
+
+        header .menu li a {
+            text-decoration: none;
+            color: #eee;
+            font-weight: bold;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+
+        header .menu li a:hover {
+            color: #FF5733;
+        }
+
+
+        /* Custom Button */
+        .custom-btn {
+            width: 120px;
+            padding: 15px;
+            margin-top: 10px;
+            margin-left: -10px;
+            border-radius: 30px;
+            font-weight: 500;
+            border: 2px solid transparent;
+            color: #FFF;
+            cursor: pointer;
+            background-color: transparent;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            line-height: normal;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .custom-btn::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            left: 0;
+            top: 0;
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .custom-btn::before {
+            content: "";
+            background: linear-gradient(45deg, #FF0000, #FF7300, #FFFB00, #48FF00, #00FFD5, #002BFF, #FF00C8, #FF0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 600%;
+            z-index: -1;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            filter: blur(8px);
+            animation: glowing 20s linear infinite;
+            border-radius: 30px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover::before {
+            opacity: 1;
+        }
+
+        .custom-btn:active::after {
+            background: transparent;
+        }
+
+        .custom-btn:active {
+            color: #000;
+            font-weight: bold;
+        }
+
+        /* Slider */
+        .slider {
+            height: 100vh;
+            margin-top: -50px;
+            position: relative;
+        }
+
+        .slider .list .item {
+            position: absolute;
+            inset: 0 0 0 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .slider .list .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider .list .item::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-image: linear-gradient(to top, #000 40%, transparent);
+        }
+
+        .slider .list .item .content {
+            position: absolute;
+            left: 10%;
+            top: 10%;
+            width: 500px;
+            max-width: 80%;
+            z-index: 1;
+        }
+
+        .slider .list .item .content p:nth-child(1) {
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-weight: bold;
+            text-align: justify;
+        }
+
+        .slider .list .item .content h2 {
+            font-size: 80px;
+            margin: 0;
+        }
+
+        .slider .list .item.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        @keyframes showContent {
+            to {
+                transform: translateY(0);
+                filter: blur(0);
+                opacity: 1;
+            }
+        }
+
+        .slider .list .item.active p:nth-child(1),
+        .slider .list .item.active h2,
+        .slider .list .item.active p:nth-child(3) {
+            transform: translateY(30px);
+            filter: blur(20px);
+            opacity: 0;
+            animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
+            font-weight: bold;
+            text-align: justify;
+        }
+
+        .slider .list .item.active .custom-btn {
+            transform: translateY(30px);
+            filter: blur(20px);
+            opacity: 0;
+            animation: showContent 0.5s 0.7s ease-in-out 1 forwards;
+            font-weight: bold;
+        }
+
+        .slider .list .item.active h2 {
+            animation-delay: 1s;
+        }
+
+        .slider .list .item.active p:nth-child(3) {
+            animation-duration: 1.3s;
+        }
+
+        .arrows {
+            position: absolute;
+            top: 40%;
+            right: 18%;
+            z-index: 100;
+        }
+
+        .arrows button {
+            background-color: #eee5;
+            border: none;
+            font-family: monospace;
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            font-size: x-large;
+            color: #eee;
+            transition: 0.5s;
+        }
+
+        .arrows button:hover {
+            background-color: #eee;
+            color: black;
+        }
+
+        .thumbnail {
+            position: absolute;
+            bottom: 1px;
+            z-index: 11;
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            height: 250px;
+            padding: 0 50px;
+            box-sizing: border-box;
+            overflow: auto;
+            justify-content: center;
+        }
+
+        .thumbnail::-webkit-scrollbar {
+            width: 0;
+        }
+
+        .thumbnail .item {
+            width: 150px;
+            height: 220px;
+            filter: brightness(0.5);
+            transition: 0.5s;
+            flex-shrink: 0;
+        }
+
+        .thumbnail .item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .thumbnail .item.active {
+            filter: brightness(1.5);
+        }
+
+        .thumbnail .item .content {
+            position: absolute;
+            inset: auto 10px 10px 10px;
+            text-shadow: 1px 1px black,
+                -1px 1px 0 black,
+                1px -1px 0 rgb(0, 0, 0),
+                -1px -1px 0 black;
+        }
+
+        @keyframes glowing {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .thumbnail {
+                justify-content: start;
+            }
+
+            .slider .list .item .content h2 {
+                font-size: 40px;
+            }
+
+            .arrows {
+                top: 10%;
+            }
+        }
+
+        @media screen and (min-width: 340px) and (max-width: 768px) {
+            .slider .list .item .content {
+                margin-top: 20px;
+            }
+
+            .arrows {
+                right: 30px;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="logo"></div>
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </header>
+
+
+    <!-- slider -->
+
+    <div class="slider">
+        <!-- list Items -->
+        <div class="list">
+            <div class="item active">
+                <img src="Travel Website/Image/pic-2.jpg">
+                <div class="content">
+                    <p>Travel Website</p>
+                    <h2>Project 01</h2>
+                    <p>
+                        Explore the best of Japan with Japan Unveiled! From Tokyo's skyline to Kyoto's ancient temples,
+                        discover expert tips, top destinations, and unforgettable experiences. Start your journey today!
+                    </p>
+                    <a href="Travel Website/Index.html" class="btn custom-btn">GO TO SITE</a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="Api/background.webp">
+                <div class="content">
+                    <p>Weather API</p>
+                    <h2>Project 02</h2>
+                    <p>
+                        Get real-time weather updates with our Weather API! ☀️🌧️ Access current conditions, forecasts,
+                        and insights for any location worldwide. Simple, accurate, and easy to use!
+                    </p>
+                    <a href="Api/index.html" class="btn custom-btn">GO TO SITE</a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img3.jpg">
+                <div class="content">
+                    <p>design</p>
+                    <h2>Project 03</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                    </p>
+                    <a href="#" class="btn custom-btn">GO TO SITE</a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img4.jpg">
+                <div class="content">
+                    <p>design</p>
+                    <h2>Project 04</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                    </p>
+                    <a href="#" class="btn custom-btn">GO TO SITE</a>
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img5.jpg">
+                <div class="content">
+                    <p>design</p>
+                    <h2>Project 05</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                    </p>
+                    <a href="#" class="btn custom-btn">GO TO SITE</a>
+                </div>
+            </div>
+        </div>
+        <!-- button arrows -->
+        <div class="arrows">
+            <button id="prev"><</button>
+                    <button id="next">></button>
+        </div>
+        <!-- thumbnail -->
+        <div class="thumbnail">
+            <div class="item active">
+                <img src="Travel Website/Image/pic-2.jpg">
+                <div class="content">
+                    Project 1 <br> Japan
+                </div>
+            </div>
+            <div class="item">
+                <img src="Api/background.webp">
+                <div class="content">
+                    project 2 <br> Weather API
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img3.jpg">
+                <div class="content">
+                    project 3
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img4.jpg">
+                <div class="content">
+                    project 4
+                </div>
+            </div>
+            <div class="item">
+                <img src="image/img5.jpg">
+                <div class="content">
+                    project 5
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let items = document.querySelectorAll('.slider .list .item');
+        let next = document.getElementById('next');
+        let prev = document.getElementById('prev');
+        let thumbnails = document.querySelectorAll('.thumbnail .item');
+
+        // config param
+        let countItem = items.length;
+        let itemActive = 0;
+        // event next click
+        next.onclick = function () {
+            itemActive = itemActive + 1;
+            if (itemActive >= countItem) {
+                itemActive = 0;
+            }
+            showSlider();
+        }
+        //event prev click
+        prev.onclick = function () {
+            itemActive = itemActive - 1;
+            if (itemActive < 0) {
+                itemActive = countItem - 1;
+            }
+            showSlider();
+        }
+        // auto run slider
+        let refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000)
+        function showSlider() {
+            // remove item active old
+            let itemActiveOld = document.querySelector('.slider .list .item.active');
+            let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+            itemActiveOld.classList.remove('active');
+            thumbnailActiveOld.classList.remove('active');
+
+            // active new item
+            items[itemActive].classList.add('active');
+            thumbnails[itemActive].classList.add('active');
+            setPositionThumbnail();
+
+            // clear auto time run slider
+            clearInterval(refreshInterval);
+            refreshInterval = setInterval(() => {
+                next.click();
+            }, 5000)
+        }
+        function setPositionThumbnail() {
+            let thumbnailActive = document.querySelector('.thumbnail .item.active');
+            let rect = thumbnailActive.getBoundingClientRect();
+            if (rect.left < 0 || rect.right > window.innerWidth) {
+                thumbnailActive.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+            }
+        }
+
+        // click thumbnail
+        thumbnails.forEach((thumbnail, index) => {
+            thumbnail.addEventListener('click', () => {
+                itemActive = index;
+                showSlider();
+            })
+        })
+    </script>
+</body>
+
+</html>
