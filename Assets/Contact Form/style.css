@@ -98,6 +98,7 @@ header .menu li a:hover {
 
 
 
+
 .contact-form {
   background-color: #2e3433;
   position: relative;
@@ -323,6 +324,7 @@ textarea.input {
 @media (max-width: 850px) {
   .form {
     grid-template-columns: 1fr;
+    margin-top: 50px;
   }
 
   .contact-info:before {
@@ -353,7 +355,7 @@ textarea.input {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 300px) {
   .container {
     padding: 1.5rem;
   }
