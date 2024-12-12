@@ -96,6 +96,11 @@ header .menu li a:hover {
   }
 }
 
+@media screen and (min-width: 340px) and (max-width: 768px){
+  .form {
+    grid-template-columns: 1fr;
+  }
+}
 
 
 
@@ -355,7 +360,7 @@ textarea.input {
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 480px) {
   .container {
     padding: 1.5rem;
   }
