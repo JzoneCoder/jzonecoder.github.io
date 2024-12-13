@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-image: url('img/background.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  text-align: center;
+  margin: 0;
+}
+
+svg {
+  width: 25px;
+}
+
+header {
+  width: 1200px;
+  max-width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 50px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 100;
+}
+
+header .logo {
+  font-weight: bold;
+}
+
+header .menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-weight: 500;
+}
+
+header .menu li a {
+  text-decoration: none;
+  color: #eee;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: color 0.3s ease;
+}
+
+header .menu li a:hover {
+  color: #FF5733;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 340px) and (max-width: 768px){
+  header .menu{
+      margin-top: 30px;
+  }
+}
+
+.form {
+  margin: auto;
+  margin-top: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  z-index: 1000;
+  width: 500px;
+  max-width: 90%;
+}
+
+@media screen and (min-width: 340px) and (max-width: 768px) {
+  .form {
+    width: 90%; 
+    max-width: 500px; 
+    padding: 0.5rem;
+    margin-top: 50px;
+  }
+}
+
+.img {
+  border-radius: 100%;
+  margin-top: 1rem;
+  width: 200px;
+  height: 200px;
+}
+
+.name,
+.title,
+.desc {
+  text-align: center;
+  color: white;
+}
+
+.name {
+  font-weight: bold;
+}
+.title{
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 14px;
+  margin-top: 16px;
+  padding: 0 1rem;
+}
+
+
+.social-media {
+  padding: 1rem 0 0 0;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #2d2a2a, #000000);
+  color: #fff;
+  text-align: center;
+  line-height: 35px;
+  margin: 0 0.5rem;
+  transition: 0.3s;
+}
+
+
+.social-icons a:hover {
+  transform: scale(1.05);
+}
