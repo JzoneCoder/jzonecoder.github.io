@@ -199,11 +199,11 @@ body {
 
 @media (max-width: 430px) {
     .main {
-        width: 22rem;
+        width: 21rem;
     }
     .box1,
     .box2 {
-        width: 9.5rem;
+        width: 9rem;
     }
     .gridContainer span p {
         font-size: 25px;
@@ -212,7 +212,10 @@ body {
         font-size: 20px;
     }
     .searchBar {
-        width: 20rem;
+        width: 18rem;
+    }
+    .searchBar button i {
+        margin-left: -15px;
     }
 }
 
